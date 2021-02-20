@@ -1,0 +1,15 @@
+<div style="display:grid;grid:min-content/auto-flow;">
+  <h3>Login</h3>
+  <p>
+    <button *ngIf="(isLoggedIn$ | async) === false" (click)="login()">login</button>
+    <button *ngIf="(isLoggedIn$ | async) === true"(click)="logout()">logout</button>
+  </p>
+
+  <p>  
+    <select #roleNeeded>
+      <option *ngFor="let role of ['admin', 'member', 'wizard!']" [value]="role">{{ role }}</option>
+    </select>
+    <button (click)="checkRole(roleNeeded.value)">check role</button>
+  </p>
+  <p>Has role: {{ roleCheck$ | async }}</p>
+</div>
