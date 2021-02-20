@@ -1,5 +1,6 @@
-import { enableProdMode } from '@angular/core';
+import { enableProdMode, NgZone } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { Router } from '@angular/router'
 import { ObservableStore } from '@codewithdan/observable-store'
 import { ReduxDevToolsExtension } from '@codewithdan/observable-store-extensions'
 
@@ -13,7 +14,7 @@ if (environment.production) {
 ObservableStore.globalSettings = {  
   trackStateHistory: true
 };
-ObservableStore.addExtension(new ReduxDevToolsExtension());
+ObservableStore.addExtension(new ReduxDevToolsExtension({ router: Router, ngZone: NgZone }));
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
